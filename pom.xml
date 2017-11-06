@@ -34,7 +34,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<graylog.version>2.3.0</graylog.version>
-		<graylog2.plugin-dir>/usr/share/graylog-server/plugin</graylog2.plugin-dir>
+		<graylog.plugin-dir>/usr/share/graylog-server/plugin</graylog.plugin-dir>
 	</properties>
 
 	<dependencies>
