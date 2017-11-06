@@ -8,8 +8,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -24,17 +22,17 @@ public class HttpSender implements Sender {
 
 	private final String url;
 	private final List<String> fieldList;
+	private final Boolean shouldSendStream;
 
 	boolean initialized = false;
-
-	private final EventLoopGroup workerGroup = new NioEventLoopGroup();
 
 	private OkHttpClient client;
 	public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-	public HttpSender(final String url, final List<String> fieldList) {
+	public HttpSender(final String url, final List<String> fieldList, final Boolean shouldSendStream) {
 		this.url = url;
 		this.fieldList = fieldList;
+		this.shouldSendStream = shouldSendStream;
 	}
 
 	@Override
@@ -45,13 +43,14 @@ public class HttpSender implements Sender {
 
 	@Override
 	public void stop() {
-		workerGroup.shutdownGracefully();
 	}
 
 	@Override
 	public void send(Message message) {
 		final JSONObject jsonObject = new JSONObject();
-		jsonObject.put("stream", message.getStreams());
+		if (shouldSendStream) {			
+			jsonObject.put("stream", message.getStreams());
+		}
 		final JSONObject jsonMessage =  new JSONObject(); 
 		for(String field: fieldList) {
 			final Object value = message.getField(field);

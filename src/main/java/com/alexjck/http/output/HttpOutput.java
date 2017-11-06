@@ -39,7 +39,8 @@ public class HttpOutput implements MessageOutput {
 		}
 
 		// Set up sender.
-		sender = new HttpSender(configuration.getString(API_HOST), configuration.getList(FIELD_LIST));
+		sender = new HttpSender(configuration.getString(API_HOST), configuration.getList(FIELD_LIST),
+				configuration.getBoolean(STREAM_BOOL));
 
 		running = true;
 	}
