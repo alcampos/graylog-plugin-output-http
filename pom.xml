@@ -36,7 +36,7 @@
 		<maven.install.skip>true</maven.install.skip>
 		<maven.deploy.skip>true</maven.deploy.skip>
 		<maven.site.skip>true</maven.site.skip>
-		<graylog2.version>2.3.0</graylog2.version>
+		<graylog.version>2.3.0</graylog.version>
 		<graylog2.plugin-dir>/usr/share/graylog-server/plugin</graylog2.plugin-dir>
 	</properties>
 
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>org.graylog2</groupId>
 			<artifactId>graylog2-server</artifactId>
-			<version>${graylog2.version}</version>
+			<version>${graylog.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
